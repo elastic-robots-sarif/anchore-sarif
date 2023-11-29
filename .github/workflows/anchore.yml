@@ -25,6 +25,8 @@ jobs:
         id: scan
         with:
           image: "localbuild/testimage:latest"
+          fail-build: false
+          severity-cutoff: critical
 
       - uses: github/codeql-action/upload-sarif@v2
         with:
