@@ -21,13 +21,13 @@ jobs:
       - name: Build the Container image
         run: docker build . --file Dockerfile --tag localbuild/testimage:latest
 
-      - uses: anchore/scan-action@v3
+      - uses: anchore/scan-action@v4
         id: scan
         with:
           image: "localbuild/testimage:latest"
           fail-build: false
           severity-cutoff: critical
 
-      - uses: github/codeql-action/upload-sarif@v2
+      - uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: ${{ steps.scan.outputs.sarif }}
